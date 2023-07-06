@@ -1,0 +1,77 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''" *ngIf="myscreenWidth > 430px">
+    <div class="logo-container row">
+        <button class="logo col-3" (click)="onToggleCollapse()">S</button>
+        <div class="logo-text col-3" *ngIf="collapsed">Web-App</div>
+        <button class="btn-close col-3" *ngIf="collapsed" (click)="onCloseCollapse()">
+            <i class="bi bi-x-circle"></i>
+        </button>
+    </div>
+    <ul class="sidenav-nav">
+        <li class="sidenav-nav-item" *ngFor="let data of navData">
+            <a class="sidenav-nav-link" [routerLink]="[data.roterLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <i class="sidenav-link-icon" [class]="data.icon"></i>
+                <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" *ngIf="!isAuthenticated">
+            <a class="sidenav-nav-link" routerLink="authentication" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <i class="sidenav-link-icon bi bi-person"></i>
+                <span class="sidenav-link-text" *ngIf="collapsed">Authentication</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" *ngIf="isAuthenticated">
+            <a class="sidenav-nav-link" (click)="onLogout()">
+                <i class="sidenav-link-icon bi bi-box-arrow-left"></i>
+                <span class="sidenav-link-text" *ngIf="collapsed">Logout</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" *ngIf="isAuthenticated && Admin"> 
+            <mat-card>
+                <button mat-button [matMenuTriggerFor]="menu"><i class="sidenav-link-icon bi bi-arrow-through-heart"></i></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="onSave()">Save</button>
+                    <button mat-menu-item (click)="onFetch()">Fetch</button>
+                </mat-menu>
+            </mat-card>
+        </li>
+    </ul>
+</div>
+
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''" *ngIf="myscreenWidth <= 430px">
+    <div class="logo-container row">
+        <button class="logo col-3" (click)="onToggleCollapse()">S</button>
+        <div class="logo-text col-3" *ngIf="collapsed">Web-App</div>
+        <button class="btn-close col-3" *ngIf="collapsed" (click)="onCloseCollapse()">
+            <i class="bi bi-x-circle"></i>
+        </button>
+    </div>
+    <ul class="sidenav-nav">
+        <li class="sidenav-nav-item" *ngFor="let data of navData">
+            <a class="sidenav-nav-link" [routerLink]="[data.roterLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  *ngIf="collapsed">
+                <i class="sidenav-link-icon" [class]="data.icon"></i>
+                <span class="sidenav-link-text">{{data.label}}</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" *ngIf="!isAuthenticated && collapsed">
+            <a class="sidenav-nav-link" routerLink="authentication" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <i class="sidenav-link-icon bi bi-person"></i>
+                <span class="sidenav-link-text" *ngIf="collapsed">Authentication</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" *ngIf="isAuthenticated && collapsed">
+            <a class="sidenav-nav-link" (click)="onLogout()">
+                <i class="sidenav-link-icon bi bi-box-arrow-left"></i>
+                <span class="sidenav-link-text" *ngIf="collapsed">Logout</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" *ngIf="isAuthenticated && Admin">
+            <mat-card>
+                <button mat-button [matMenuTriggerFor]="menu"><i class="sidenav-link-icon bi bi-arrow-through-heart"></i></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="onSave()">Save</button>
+                    <button mat-menu-item (click)="onFetch()">Fetch</button>
+                </mat-menu>
+            </mat-card>
+        </li>
+    </ul>
+</div>

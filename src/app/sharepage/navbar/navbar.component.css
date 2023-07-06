@@ -1,0 +1,17 @@
+.navbar {
+    font-weight: 700;
+}
+.nav-item .active-link {
+    color: red;
+    font-weight: 700;
+}
+.container-fluid .navbar-brand {
+    margin-left: 20px;
+}
+li {
+    font: 500 18px 'Cookie', cursive;
+    padding-left: 20px;
+}
+.first {
+    margin-left: 30px
+}

@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url("../../../assets/source/try.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.title {
+    display: flex;
+    justify-content: center;
+}
+.image {
+    max-width: 200px;
+}
+.card {
+    margin-left: 10px;
+    background-color: #fff;
+    color: #000;
+}
+.mbutton {
+    max-width: 35px;
+    max-height: 35px;
+    margin-left: calc(30px + 40*(100vw/1440));  
+    margin-right: calc(30px + 40(100vw/1440));
+}

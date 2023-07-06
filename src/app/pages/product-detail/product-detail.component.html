@@ -1,0 +1,18 @@
+<div class="section">
+    <mat-card class="card">
+        <mat-card-title class="title">{{ product.title }}</mat-card-title>
+        <img mat-card-image class="image" src="{{ product.imagePath }}">
+        <mat-card-content>
+            <p>Price: {{ product.price | currency }}</p>
+            <p>Description: {{ product.content }}</p>
+            <p>Year: {{product.year}}</p>
+            <p>Chip: {{product.chip}}</p>
+            <p>SSD: {{product.SSD}}</p>
+            <p>Memory: {{product.memory}}</p>
+            <p>Display: {{product.memory}}</p>            
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="mbutton" mat-fab color="basic" (click)="onClick()"><mat-icon class="icon">youtube_searched_for</mat-icon></button>
+        </mat-card-actions>
+    </mat-card>
+</div> 

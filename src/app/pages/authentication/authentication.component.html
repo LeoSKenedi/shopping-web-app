@@ -1,0 +1,48 @@
+<!-- <div>
+    <div class="centered">
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" class="form-control" ngModel name="email" required email>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" ngModel name="password" required minlength="6">
+            </div>
+            <br>
+            <div>
+                <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">{{ isLoginMode ? 'Login' : 'Sign Up' }}</button> | 
+                <button class="btn btn-primary" type="button" (click)="onSwitchMode()">Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}</button>
+            </div>
+        </form>
+    </div>
+</div> -->
+    <div class="body">
+        <div class="login-box">
+            <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                <h2>{{ isLoginMode ? 'Login' : 'Sign Up' }}</h2>
+                <div class="input-box">
+                    <span class="icon"><i class="bi bi-envelope-at-fill"></i></span>
+                    <input type="email" ngModel name="email" required email>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="bi bi-shield-lock-fill"></i></span>
+                    <input type="password" ngModel name="password" required minlength="5" maxlength="15">
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot" *ngIf="!error">
+                    <label><input type="checkbox">Remember me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <div class="alert alert-danger" *ngIf="error">
+                    <p>{{ error }}</p>
+                </div>
+                <button type="submit" [disabled]="!authForm.valid">{{ isLoginMode ? 'Login' : 'Sign Up' }}</button>
+                <div class="register-link">
+                    <p>Don`t have an account? <button type="button" (click)="onSwitchMode()">{{ isLoginMode ? 'Register' : 'Already have an account' }}</button></p>
+                </div>
+            </form>
+        </div>
+    </div>

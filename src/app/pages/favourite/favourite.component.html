@@ -1,0 +1,15 @@
+<div class="section">
+    <mat-card class="card" *ngFor="let products of favProducts let i = index">
+        <mat-card-title class="title">{{ products.title }}</mat-card-title>
+        <img mat-card-image class="image" src="{{ products.imagePath }}">
+        <mat-card-content>
+            <p>Price: {{ products.price | currency }}</p>
+            <p>Description: {{ products.content }}</p>            
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="fbutton" mat-fab color="primary" (click)="onClick()"><mat-icon class="icon">youtube_searched_for</mat-icon></button>
+            <button class="mbutton" mat-fab color="basic" (click)="addToCart(products)"><mat-icon class="icon">add_shopping_cart</mat-icon></button>
+            <button class="lbutton" mat-fab color="warn" (click)="onDelete(i)"><mat-icon class="icon">delete_forever</mat-icon></button>
+        </mat-card-actions>
+    </mat-card>
+</div>

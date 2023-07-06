@@ -1,0 +1,62 @@
+<div class="section" *ngIf="myscreenWidth > 430px">
+    <div class="headbar">
+        <button color="primary" mat-raised-button [matMenuTriggerFor]="menu">Sort</button>
+        <mat-menu #menu="matMenu">
+            <button color="primary" mat-menu-item (click)="sortProductsByAscendingPrice()">Ascending</button>
+            <button color="primary" mat-menu-item (click)="sortProductsByDescendingPrice()">Descending</button>
+        </mat-menu>
+        <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchQuery" (ngModelChange)="performSearch()">
+    </div>
+    <div class="container">
+        <mat-card class="card" *ngFor="let products of products let i = index">
+            <mat-card-title class="title">{{ products.title }}</mat-card-title>
+            <img mat-card-image class="image" src="{{ products.imagePath }}">
+            <mat-card-content>
+                <p>Price: {{ products.price | currency }}</p>
+                <p>Description: {{ products.content }}</p>            
+            </mat-card-content>
+            <mat-card-actions>
+                <button class="fbutton" mat-fab color="primary" (click)="onNavigateToProductDetail(i)"><mat-icon class="icon">book</mat-icon></button>
+                <button class="mbutton" mat-fab color="warn" (click)="addToFavourite(products)"><mat-icon class="icon">bookmark</mat-icon></button>
+                <button class="lbutton" mat-fab color="basic" (click)="addToCart(products)"><mat-icon class="icon">add_shopping_cart</mat-icon></button>
+                <button mat-button [matMenuTriggerFor]="menu" *ngIf="isAuthenticated && authService.getAdmin()">Change</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openDialog(true, i, products)">Edit</button>
+                    <button mat-menu-item (click)="onDelete(i)">Delete</button>
+                </mat-menu>
+            </mat-card-actions>
+        </mat-card>
+ <button class="lbutton" *ngIf="isAuthenticated && authService.getAdmin()" mat-fab color="basic" (click)="openDialog(false)"><mat-icon class="icon">add_shopping_cart</mat-icon></button>
+    </div>
+</div>
+<div class="section" *ngIf="myscreenWidth <= 430px">
+    <div class="headbar2">
+        <button color="primary" mat-raised-button [matMenuTriggerFor]="menu">Sort</button>
+        <mat-menu #menu="matMenu">
+            <button color="primary" mat-menu-item (click)="sortProductsByAscendingPrice()">Ascending</button>
+            <button color="primary" mat-menu-item (click)="sortProductsByDescendingPrice()">Descending</button>
+        </mat-menu>
+        <input type="text" class="search-input2" placeholder="Search..." [(ngModel)]="searchQuery" (ngModelChange)="performSearch()">
+    </div>
+    <div class="container">
+        <mat-card class="card" *ngFor="let products of products let i = index">
+            <mat-card-title class="title">{{ products.title }}</mat-card-title>
+            <img mat-card-image class="image" src="{{ products.imagePath }}">
+            <mat-card-content>
+                <p>Price: {{ products.price | currency }}</p>
+                <p>Description: {{ products.content }}</p>            
+            </mat-card-content>
+            <mat-card-actions>
+                <button class="fbutton" mat-fab color="primary" (click)="onNavigateToProductDetail(i)"><mat-icon class="icon">book</mat-icon></button>
+                <button class="mbutton" mat-fab color="warn" (click)="addToFavourite(products)"><mat-icon class="icon">bookmark</mat-icon></button>
+                <button class="lbutton" mat-fab color="basic" (click)="addToCart(products)"><mat-icon class="icon">add_shopping_cart</mat-icon></button>
+                <button mat-button [matMenuTriggerFor]="menu" *ngIf="isAuthenticated && authService.getAdmin()">Change</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openDialog(true, i, products)">Edit</button>
+                    <button mat-menu-item (click)="onDelete(i)">Delete</button>
+                </mat-menu>
+            </mat-card-actions>
+        </mat-card>
+    <button class="lbutton" *ngIf="isAuthenticated && authService.getAdmin()" mat-fab color="basic" (click)="openDialog(false)"><mat-icon class="icon">add_shopping_cart</mat-icon></button>
+    </div>
+</div>

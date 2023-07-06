@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Smooch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@font-face {
+    font-family: Rock;
+    src: url("/assets/source/Newrocker.ttf");
+}
+@font-face {
+    font-family: Robo;
+    src: url("/assets/source/ElectronPulse.ttf");
+}
+@font-face {
+    font-family: Italy;
+    src: url("/assets/source/DancingScript-VariableFont_wght.ttf");
+}

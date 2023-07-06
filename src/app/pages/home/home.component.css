@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url("../../../assets/source/home.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+p {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    font-family: Rock;
+    font-size: calc(18px + 18*(100vw/1440));
+    font-weight: 700;
+    color: rgb(10, 54, 165);
+    text-shadow:0;
+}
+.p {
+    margin-bottom: 200px;
+}
+span {
+    font-family: Robo;
+}
+a {
+    text-decoration: none;
+    color: #000
+}
+a:hover {
+    color: crimson;
+}

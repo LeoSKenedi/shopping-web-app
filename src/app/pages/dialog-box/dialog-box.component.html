@@ -1,0 +1,42 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Title: </mat-label>
+        <input formControlName="title" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Image: </mat-label>
+        <input formControlName="imagePath" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Content: </mat-label>
+        <input formControlName="content" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Price: </mat-label>
+        <input formControlName="price" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Year: </mat-label>
+        <input formControlName="year" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Chip: </mat-label>
+        <input formControlName="chip" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>SSD: </mat-label>
+        <input formControlName="SSD" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Memory: </mat-label>
+        <input formControlName="memory" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Display: </mat-label>
+        <input formControlName="display" matInput>
+    </mat-form-field>
+
+
+    <button class="button" mat-flat-button type="submit" style="margin: 10px;" color="primary">{{isEdit ? 'Add' : 'Edit'}}</button>
+    <button class="button" mat-flat-button type="button" (click)="onClose()" style="margin: 10px;" color="warn">Cancel</button>
+</form>
