@@ -3,6 +3,7 @@ import { FavouriteService } from './favourite.service';
 import { Product } from '../products/products.model';
 import { Router } from '@angular/router';
 import { ProductsService } from '../products/products.service';
+import { AuthService } from '../authentication/authentication.service';
 
 @Component({
   selector: 'app-favourite',
@@ -10,27 +11,38 @@ import { ProductsService } from '../products/products.service';
   styleUrls: ['./favourite.component.css']
 })
 export class FavouriteComponent {
-  favProducts: Product[] = []
-  constructor(private favServ: FavouriteService, private router: Router, private prodServ: ProductsService) {}
+  favProducts: Product[] = [];
+
+  constructor(
+    private favServ: FavouriteService,
+    private router: Router,
+    private prodServ: ProductsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.favProducts = this.favServ.getFavProducts()
+    const userId = this.authService.getUserId();
+    this.favServ.loadFavProductsFromLocalStorage(userId);
+    this.favProducts = this.favServ.getFavProducts();
     this.favServ.favChanged.subscribe((favProducts: Product[]) => {
-      this.favProducts = favProducts
-    })
+      this.favProducts = favProducts;
+    });
   }
 
   onDelete(id: number) {
-    this.favServ.deleteFavProduct(id)
+    const userId = this.authService.getUserId();
+    this.favServ.deleteFavProduct(id, userId);
   }
 
   addToCart(product: Product) {
-    this.prodServ.addProductToCart(product)
+    const userId = this.authService.getUserId();
+    this.favServ.addFavProduct(product, userId);
   }
 
   onNavigateToProductDetail(index: number) {
-    this.router.navigate(['products', index])
+    this.router.navigate(['products', index]);
   }
+
   onClick() {
     this.router.navigate(['products']);
   }

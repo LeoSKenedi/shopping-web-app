@@ -1,9 +1,13 @@
+import { Product } from "../products/products.model";
+
 export class User {
     constructor(
         public email: string,
         public id: string,
         private _token: string,
-        private _tokenExpirationDate: Date
+        private _tokenExpirationDate: Date,
+        public cartProducts: Product[],
+        public favProducts: Product[]
     ) {}
 
     get token() {

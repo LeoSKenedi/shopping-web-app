@@ -3,6 +3,7 @@ import { Product } from '../products/products.model';
 import { CartService } from './cart.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../products/products.service';
+import { AuthService } from '../authentication/authentication.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,61 +11,73 @@ import { ProductsService } from '../products/products.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartProducts: Product[] = [] 
-  filteredProducts: Product[] = []
-  searchQuery: string = ''
-  myscreenWidth: number
+  cartProducts: Product[] = [];
+  filteredProducts: Product[] = [];
+  searchQuery: string = '';
+  myscreenWidth: number;
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.myscreenWidth = window.innerWidth 
+    this.myscreenWidth = window.innerWidth;
   }
   screenWidth = 0;
-  constructor(private cartServ: CartService, private router: Router, private prodServ: ProductsService) {}
+
+  constructor(
+    private cartServ: CartService,
+    private router: Router,
+    private prodServ: ProductsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.cartProducts = this.cartServ.getCartProducts()
+    const userId = this.authService.getUserId();
+    this.cartServ.loadCartProductsFromLocalStorage(userId);
+    this.cartProducts = this.cartServ.getCartProducts();
     this.cartServ.cartChanged.subscribe((cartProducts: Product[]) => {
-      this.cartProducts = cartProducts
-    })
-    this.setIntitialScreenWidth()
+      this.cartProducts = cartProducts;
+    });
+    this.setIntitialScreenWidth();
   }
 
   setIntitialScreenWidth() {
-    this.myscreenWidth = window.innerWidth
+    this.myscreenWidth = window.innerWidth;
   }
 
   performSearch() {
     // Perform search on the products based on searchQuery
     if (this.searchQuery.trim() !== '') {
-      this.cartProducts = this.prodServ.getProducts().filter((product) =>
-        product.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
+      this.cartProducts = this.prodServ
+        .getProducts()
+        .filter((product) =>
+          product.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
     } else {
-      this.cartProducts = this.cartServ.getCartProducts()
+      this.cartProducts = this.cartServ.getCartProducts();
     }
   }
 
   addToFavourite(product: Product) {
-    this.prodServ.addProductToFavourite(product) 
+    this.prodServ.addProductToFavourite(product);
   }
 
   onDelete(id: number) {
-    this.cartServ.deleteCartProduct(id)
+    const userId = this.authService.getUserId();
+    this.cartServ.deleteCartProduct(id, userId);
   }
 
   onNavigateToProductDetail(index: number) {
-    this.router.navigate(['products', index])
+    this.router.navigate(['products', index]);
   }
 
   increaseQuantity(product: Product) {
-    product.quantity++;  
+    product.quantity++;
   }
 
   decreaseQuantity(product: Product) {
     if (product.quantity > 1) {
-      product.quantity--; 
+      product.quantity--;
     }
   }
+
   onClick() {
     this.router.navigate(['products']);
   }

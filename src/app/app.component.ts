@@ -20,8 +20,8 @@ export class AppComponent implements OnInit{
   screenWidth = 0;
 
   ngOnInit() {
-    this.authService.autoLogin()
     this.dataStore.fetchProducts().subscribe()
+    this.authService.autoLogin()
   }
 
   onToggleSideNav(data: SideNavToggle): void {

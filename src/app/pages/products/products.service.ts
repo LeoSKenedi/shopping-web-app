@@ -1,3 +1,4 @@
+import { AuthService } from "../authentication/authentication.service"
 import { CartService } from "../cart/cart.service"
 import { FavouriteService } from "../favourite/favourite.service"
 import { Product } from "./products.model"
@@ -6,7 +7,7 @@ import { EventEmitter, Injectable } from '@angular/core'
 @Injectable()
 export class ProductsService {
 
-  constructor(private cartServ: CartService, private favServ: FavouriteService) {}
+  constructor(private cartServ: CartService, private favServ: FavouriteService, private authServ: AuthService) {}
 
   productsChanged = new EventEmitter<Product[]>()
   // products: Product[] = [
@@ -45,10 +46,12 @@ export class ProductsService {
   }
  
   addProductToCart(product: Product) {
-    this.cartServ.addCartProduct(product)
+    const userId = this.authServ.getUserId();
+    this.cartServ.addCartProduct(product, userId);
   }
 
   addProductToFavourite(product: Product) {
-    this.favServ.addFavProduct(product)
+    const userId = this.authServ.getUserId();
+    this.favServ.addFavProduct(product, userId);
   }
 }
