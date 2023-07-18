@@ -4,6 +4,11 @@ import { CartService } from './cart.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../products/products.service';
 import { AuthService } from '../authentication/authentication.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogBox2Component } from '../dialog-box2/dialog-box2.component';
+import { OrderService } from '../order/order.service';
+import { DataStorageService } from 'src/app/sharepage/data-storage.service';
+import { Order } from './order.model';
 
 @Component({
   selector: 'app-cart',
@@ -25,7 +30,10 @@ export class CartComponent implements OnInit {
     private cartServ: CartService,
     private router: Router,
     private prodServ: ProductsService,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog,
+    private orderServ: OrderService,
+    private dataStore: DataStorageService
   ) {}
 
   ngOnInit() {
@@ -54,6 +62,27 @@ export class CartComponent implements OnInit {
       this.cartProducts = this.cartServ.getCartProducts();
     }
   }
+
+  openDialog(cartProducts: Product[]) {
+    const dialogRef = this.dialog.open(DialogBox2Component, {
+      width: '500px',
+      disableClose: true,
+      data: { cartProducts }
+    });
+  
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.addData(data, cartProducts);
+      }
+    });
+  }
+
+  addData(data: any, cartProducts: Product[]) {
+    const totalPrice = cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+    const order = new Order(data.name, data.surname, data.phone, data.email, cartProducts, totalPrice);
+    this.orderServ.addOrder(order);
+    this.dataStore.storeOrders()
+  }  
 
   addToFavourite(product: Product) {
     this.prodServ.addProductToFavourite(product);

@@ -13,6 +13,12 @@
                 <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
             </a>
         </li>
+        <li class="sidenav-nav-item" *ngIf="isAuthenticated && Admin">
+            <a class="sidenav-nav-link" routerLink="order" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <i class="sidenav-link-icon bi bi-person"></i>
+                <span class="sidenav-link-text" *ngIf="collapsed">Order List</span>
+            </a>
+        </li>
         <li class="sidenav-nav-item" *ngIf="!isAuthenticated">
             <a class="sidenav-nav-link" routerLink="authentication" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <i class="sidenav-link-icon bi bi-person"></i>
@@ -24,15 +30,6 @@
                 <i class="sidenav-link-icon bi bi-box-arrow-left"></i>
                 <span class="sidenav-link-text" *ngIf="collapsed">Logout</span>
             </a>
-        </li>
-        <li class="sidenav-nav-item" *ngIf="isAuthenticated && Admin"> 
-            <mat-card>
-                <button mat-button [matMenuTriggerFor]="menu"><i class="sidenav-link-icon bi bi-arrow-through-heart"></i></button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="onSave()">Save</button>
-                    <button mat-menu-item (click)="onFetch()">Fetch</button>
-                </mat-menu>
-            </mat-card>
         </li>
     </ul>
 </div>
@@ -52,6 +49,12 @@
                 <span class="sidenav-link-text">{{data.label}}</span>
             </a>
         </li>
+        <li class="sidenav-nav-item" *ngIf="!isAuthenticated && Admin">
+            <a class="sidenav-nav-link" routerLink="order" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <i class="sidenav-link-icon bi bi-person"></i>
+                <span class="sidenav-link-text" *ngIf="collapsed">Order List</span>
+            </a>
+        </li>
         <li class="sidenav-nav-item" *ngIf="!isAuthenticated && collapsed">
             <a class="sidenav-nav-link" routerLink="authentication" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <i class="sidenav-link-icon bi bi-person"></i>
@@ -63,15 +66,6 @@
                 <i class="sidenav-link-icon bi bi-box-arrow-left"></i>
                 <span class="sidenav-link-text" *ngIf="collapsed">Logout</span>
             </a>
-        </li>
-        <li class="sidenav-nav-item" *ngIf="isAuthenticated && Admin">
-            <mat-card>
-                <button mat-button [matMenuTriggerFor]="menu"><i class="sidenav-link-icon bi bi-arrow-through-heart"></i></button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="onSave()">Save</button>
-                    <button mat-menu-item (click)="onFetch()">Fetch</button>
-                </mat-menu>
-            </mat-card>
         </li>
     </ul>
 </div>

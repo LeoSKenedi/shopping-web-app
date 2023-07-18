@@ -4,7 +4,6 @@ import { Product } from './products.model';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
-import { FavouriteService } from '../favourite/favourite.service';
 import { DataStorageService } from 'src/app/sharepage/data-storage.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../authentication/authentication.service';
@@ -21,8 +20,8 @@ export class ProductsComponent implements OnInit{
   private userSub: Subscription
   isAuthenticated: boolean = false
   myscreenWidth: number
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
+  @HostListener('window:resize', ['$event']) 
+  onResize(event: any) { 
     this.myscreenWidth = window.innerWidth 
   }
   screenWidth = 0;

@@ -1,0 +1,76 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+.headbar {
+    width: calc(150px + 300*(100vw/1440));
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headbar2 {
+    margin-left: 3%;
+    width: calc(200px + 300*(100vw/1440));
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-input {
+    width: calc(100px + 200*(100vw/1440));
+    height: 2rem;
+}
+.search-input2 {
+    margin-left: 1%;
+    width: calc(80px + 220*(100vw/1440));
+    height: 2rem;
+}
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url("../../../assets/source/try.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.title {
+    display: flex;
+    justify-content: center;
+}
+.image {
+    max-width: 200px;
+}
+.card {
+    margin-left: 10px;
+    background-color: #fff;
+    color: #000;
+}
+.fbutton {
+    max-width: 35px;
+    max-height: 35px;
+    margin-left: calc(1px + 9*(100vw/1440));
+}
+.lbutton {
+    max-width: 35px;
+    max-height: 35px;
+    margin-left: calc(10px + 20*(100vw/1440));
+    background-color: green;
+}
+.mbutton {
+    max-width: 35px;
+    max-height: 35px;
+    margin-left: calc(10px + 20*(100vw/1440));
+}
+.list {
+    list-style: none;
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
